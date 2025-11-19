@@ -10,7 +10,7 @@ Route::get('/update',[PageController::class,'update'])->name('update');
 Route::get('/contact',[PageController::class,'contact'])->name('contact');
 Route::get('/post',[PageController::class,'post'])->name('post');
 Route::post('/store',[PageController::class,"store"])->name('store');
-Route::get('/', [PageController::class,'home']);
+Route::get('/', [PageController::class,'welcome']);
 Route::get('/dashboard', [PageController::class,'home'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::middleware('auth')->group(function () {
 Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

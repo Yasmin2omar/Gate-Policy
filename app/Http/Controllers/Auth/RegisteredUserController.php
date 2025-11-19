@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\UserRegisteredEvent;
 use App\Http\Controllers\Controller;
 use App\Mail\WelcomeUserMail;
 use App\Models\User;
@@ -43,8 +44,8 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-        Mail::to("yasmin2@gmail.com")->send(new WelcomeUserMail($user));
-
+        event(new UserRegisteredEvent($user));
+ 
         // event(new Registered($user));
 
         Auth::login($user);
